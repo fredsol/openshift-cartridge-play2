@@ -18,6 +18,14 @@ function restart {
     start
 }
 
+function installJava8 {
+    #At this time openShift provides java 1.7, but new play apps can be developped with java 1.8
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u20-b26/jdk-8u20-linux-x64.tar.gz
+    tar -zxf jdk-8u20-linux-x64.tar.gz
+    export PATH=$OPENSHIFT_DATA_DIR/jdk1.8.0_20/bin:$PATH
+    export JAVA_HOME="$OPENSHIFT_DATA_DIR/jdk/jdk1.8.0_20"
+}
+
 function build {
     # Workaround for failure in npm install when a package in package.json
     # points to a git commit.
