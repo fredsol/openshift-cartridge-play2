@@ -3,6 +3,7 @@
 function start {
     cd $OPENSHIFT_REPO_DIR
     # build on first time
+    [ -d $OPENSHIFT_DATA_DIR/jdk] || installJava8
     [ -d target ] || build
     rm -f target/universal/stage/RUNNING_PID
     BIN_NAME=$(ls target/universal/stage/bin/ | head -n 1)
